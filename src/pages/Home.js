@@ -18,7 +18,7 @@ const Main = () => {
                 <Image src={ScanText} alt="Scan any foreign text and say hello to stress-free travels!" />
             </div>
             <div className={styles.camera}>
-                <Link href='/Sample'>
+                <Link href='/Camera'>
                     <Image src={CameraButton} alt="camera button" />
                 </Link>
             </div>
