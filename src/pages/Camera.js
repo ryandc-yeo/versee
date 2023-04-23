@@ -78,27 +78,6 @@ const TakePhotoButton = styled(Button)`
   }
 `;
 
-const ChangeFacingCameraButton = styled(Button)`
-  background: url(https://img.icons8.com/ios/50/000000/switch-camera.png);
-  background-position: center;
-  background-size: 40px;
-  background-repeat: no-repeat;
-  width: 40px;
-  height: 40px;
-  padding: 40px;
-  &:disabled {
-    opacity: 0;
-    cursor: default;
-    padding: 60px;
-  }
-  @media (max-width: 400px) {
-    padding: 40px 5px;
-    &:disabled {
-      padding: 40px 25px;
-    }
-  }
-`;
-
 const ImagePreview = styled.div`
   width: 120px;
   height: 120px;
@@ -167,17 +146,6 @@ const CameraPage = () => {
           />
         )}
         <Control>
-          <select
-            onChange={(event) => {
-              setActiveDeviceId(event.target.value);
-            }}
-          >
-            {devices.map((d) => (
-              <option key={d.deviceId} value={d.deviceId}>
-                {d.label}
-              </option>
-            ))}
-          </select>
           <ImagePreview
             image={image}
             onClick={() => {
@@ -190,15 +158,6 @@ const CameraPage = () => {
                 const photo = camera.current.takePhoto();
                 console.log(photo);
                 setImage(photo);
-              }
-            }}
-          />
-          <ChangeFacingCameraButton
-            disabled={numberOfCameras <= 1}
-            onClick={() => {
-              if (camera.current) {
-                const result = camera.current.switchCamera();
-                console.log(result);
               }
             }}
           />
