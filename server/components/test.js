@@ -1,9 +1,10 @@
 // import openai from "openai";
 const dotenv = require("dotenv").config();
 const cohere = require("cohere-ai");
-const openai = require("openai");
+
 cohere.init(process.env.API_KEY);
-openai.api_key = process.env.OPENAI_API_KEY;
+
+
 
 const GenerateResult = async () => {
   // const [inputText, setInputText] = useState("");
@@ -50,12 +51,12 @@ const GenerateResult = async () => {
     {text: "Where are you from originally?", label: "conversations"},
   ];
   const inputs = [
-    "kung pao chicken",
+    "sushi"
     // "please use your phone to order",
     // "please be quiet",
   ];
 
-  const outputs_array = [];
+  const outputs_array = [1,2,3];
 
   // const response = await cohere.classify({
   //   model: "large",
@@ -67,21 +68,28 @@ const GenerateResult = async () => {
 
   // console.log('classification: ');
   // console.log(response.body.classifications[0].prediction + ' ' + response.body.classifications[0].input);
+  const { Configuration, OpenAIApi } = require("openai");
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
 
   const prompt = inputs[0];
-    const response = await openai.Completion.create({
-      model: "text-davinci-003",
-      prompt,
-      temperature: 0.6,
-      max_tokens: 150,
-      top_p: 1,
-      frequency_penalty: 1,
-      presence_penalty: 1
-      });
-      console.log(response.body);
-      // const message = response.choices[0].text.trim();
-      // console.log(message);
-      outputs_array.append(response.body);
+  
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: 'create 3 relevant short phrases to converse about ' + prompt + ' with locals, not romanized',
+    temperature: 0.6,
+    max_tokens: 100,
+    // top_p: 1,
+    // frequency_penalty: 1,
+    // presence_penalty: 1
+  });
+  console.log(prompt);
+    console.log(response.data.choices[0].text);
+    // const message = response.choices[0].text.trim();
+    // console.log(message);
+    outputs_array.append(response.body);
   // TODO: undo later
   // for (let i = 0; i < 3; i++) {
   //   const prompt = inputs[0];
