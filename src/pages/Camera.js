@@ -94,7 +94,7 @@ const ImagePreview = styled.div`
 
 const FullScreenImagePreview = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: 100;
   position: absolute;
   background-color: black;
@@ -143,6 +143,8 @@ const CameraPage = () => {
                 'It is not possible to switch camera to different one because there is only one video device accessible.',
               canvas: 'Canvas is not supported.',
             }}
+            width="100%"
+            height="auto"
           />
         )}
         <Control>
