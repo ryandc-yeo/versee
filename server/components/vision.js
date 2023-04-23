@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const TextRec = async (scanImage) => {
   const vision = require("@google-cloud/vision");
   const TranslateToEnglish = require("./translate");
@@ -5,8 +7,19 @@ const TextRec = async (scanImage) => {
   const client = new vision.ImageAnnotatorClient({
     keyFilename: "google-api.json",
   });
-  console.log(scanImage);
-  const result = await client.textDetection(scanImage).then((results) => {
+
+  let base64Image = scanImage.imageSrc.split(";base64,").pop();
+
+  fs.writeFile(
+    "image.png",
+    base64Image,
+    { encoding: "base64" },
+    function (err) {
+      console.log("File created");
+    }
+  );
+
+  const result = await client.textDetection("./image.png").then((results) => {
     const text = results[0].textAnnotations;
     return text;
   });

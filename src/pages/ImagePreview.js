@@ -22,7 +22,7 @@ export default function Preview() {
 
   const compVision = async () => {
     const resp = await axios
-      .post("http://localhost:8000/vision", { value: 23, ans: "tom" })
+      .post("http://localhost:8000/vision", { imageSrc })
       .then((res) => setTranslated(res))
       .catch((err) => console.log(err));
   };
