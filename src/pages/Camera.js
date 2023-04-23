@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { Camera } from "react-camera-pro";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -106,7 +106,7 @@ const FullScreenImagePreview = styled.div`
 `;
 
 const CameraPage = () => {
-  const [numberOfCameras, setNumberOfCameras] = useState(0);
+  // const [numberOfCameras, setNumberOfCameras] = useState(0);
   const [image, setImage] = useState(null);
   const [showImage, setShowImage] = useState(false);
   const camera = useRef(null);
@@ -136,7 +136,7 @@ const CameraPage = () => {
         <Camera
           ref={camera}
           aspectRatio="cover"
-          numberOfCamerasCallback={(i) => setNumberOfCameras(i)}
+          // numberOfCamerasCallback={(i) => setNumberOfCameras(i)}
           videoSourceDeviceId={activeDeviceId}
           errorMessages={{
             noCameraAccessible:
@@ -165,10 +165,12 @@ const CameraPage = () => {
           onClick={() => {
             if (camera.current) {
               const photo = camera.current.takePhoto();
-              console.log(photo);
+              // console.log(photo);
               setImage(photo);
               setShowImage(!showImage);
-              router.push(`/ImagePreview?imageSrc=${encodeURIComponent(photo)}`);
+              router.push(
+                `/ImagePreview?imageSrc=${encodeURIComponent(photo)}`
+              );
             }
           }}
         />

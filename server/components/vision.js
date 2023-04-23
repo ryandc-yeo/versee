@@ -1,17 +1,15 @@
-const TextRec = async () => {
+const TextRec = async (scanImage) => {
   const vision = require("@google-cloud/vision");
   const TranslateToEnglish = require("./translate");
 
   const client = new vision.ImageAnnotatorClient({
     keyFilename: "google-api.json",
   });
-
-  const result = await client
-    .textDetection("../public/koreansign.jpg")
-    .then((results) => {
-      const text = results[0].textAnnotations;
-      return text;
-    });
+  console.log(scanImage);
+  const result = await client.textDetection(scanImage).then((results) => {
+    const text = results[0].textAnnotations;
+    return text;
+  });
 
   console.log(result[0].description, result[0].locale);
   const translate = await TranslateToEnglish(
