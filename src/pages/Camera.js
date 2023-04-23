@@ -95,7 +95,7 @@ const ImagePreview = styled.div`
 
 const FullScreenImagePreview = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: 100;
   position: absolute;
   background-color: black;

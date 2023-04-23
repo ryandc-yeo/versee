@@ -1,40 +1,79 @@
+// import openai from "openai";
 const dotenv = require("dotenv").config();
 const cohere = require("cohere-ai");
+const { output, trailingSlash } = require("../../next.config");
+const TextRec = require("./vision");
+const TranslateToEnglish = require("./translate");
+
 cohere.init(process.env.API_KEY);
 
 const GenerateResult = async () => {
-  const examples = [
-    { text: "welcome", label: "conversation" },
-    { text: "Good morning", label: "conversation" },
-    { text: "dasdfs", label: "Spam" },
-    { text: "Nice to know you ;)", label: "conversation" },
-    { text: "Please help me?", label: "Spam" },
-    { text: "Your parcel will be delivered today", label: "Not spam" },
-    { text: "Review changes to our Terms and Conditions", label: "Not spam" },
-    { text: "Weekly sync notes", label: "Not spam" },
-    { text: "'Re: Follow up from today's meeting'", label: "Not spam" },
-    { text: "Pre-read for tomorrow", label: "Not spam" },
-  ];
-  const inputs = ["Confirm your email address", "hey i need u to send some $"];
+  const inputs = await TextRec();
 
-  const response = await cohere.classify({
-    model: "large",
-    inputs: inputs,
-    examples: examples,
+  const outputs_array = [];
+
+  const { Configuration, OpenAIApi } = require("openai");
+  const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY,
   });
-  console.log(response.body.classifications);
-  return response.body.classifications;
-};
+  const openai = new OpenAIApi(configuration);
 
-// const GenerateResult = async () => {
-//   const response = await cohere.generate({
-//     model: "xlarge",
-//     prompt: "Once upon a time in a magical land called",
-//     max_tokens: 100,
-//     temperature: 1,
-//   });
-//   console.log(response.body.generations[0].text);
-//   return response.body.generations[0].text;
-// };
+  const prompt = inputs;
+  console.log(prompt);
+
+  for (let i = 0; i < 3; i++) {
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt:
+        "create 1 relevant short phrase to converse or ask about " +
+        prompt +
+        " with locals in the local language",
+      temperature: 0.6,
+      max_tokens: 150,
+    });
+    outputs_array.push(response.data.choices[0].text);
+  }
+
+  const romanized_array = [];
+  for (let i = 0; i < 3; i++) {
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: "write " + outputs_array[i] + " romanized",
+      temperature: 0.6,
+      max_tokens: 150,
+    });
+    romanized_array.push(response.data.choices[0].text);
+  }
+
+  const translated_array = [];
+  for (let i = 0; i < 3; i++) {
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: "write " + outputs_array[i] + " translated to English",
+      temperature: 0.6,
+      max_tokens: 150,
+    });
+    translated_array.push(response.data.choices[0].text);
+  }
+
+  console.log(prompt);
+  // console.log(response.data.choices[0].text);
+  outputs_array.map((phrase) => {
+    console.log(phrase);
+  });
+  romanized_array.map((phrase) => {
+    console.log(phrase);
+  });
+  translated_array.map((phrase) => {
+    console.log(phrase);
+  });
+
+  // outputs_array.map(async (i) => {
+  //   const translate = await TranslateToEnglish(i, "en");
+  //   console.log(translate);
+  // });
+
+  return [outputs_array, romanized_array, translated_array, 1];
+};
 
 module.exports = GenerateResult;
