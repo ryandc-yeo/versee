@@ -7,7 +7,7 @@ const TextRec = async () => {
   });
 
   const result = await client
-    .textDetection("../public/koreansign.jpg")
+    .textDetection("../public/koreanmenu.png")
     .then((results) => {
       const text = results[0].textAnnotations;
       return text;

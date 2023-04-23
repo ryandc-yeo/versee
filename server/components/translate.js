@@ -19,6 +19,7 @@ async function TranslateToEnglish(content, lang) {
   //   translations.forEach((translation, i) => {
   //     console.log(`${text} => (${target}) ${translation}`);
   //   });
+
   return translations;
 }
 

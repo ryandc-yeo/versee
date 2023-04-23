@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { Camera } from "react-camera-pro";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -95,7 +95,7 @@ const ImagePreview = styled.div`
 
 const FullScreenImagePreview = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: 100;
   position: absolute;
   background-color: black;
@@ -168,7 +168,9 @@ const CameraPage = () => {
               console.log(photo);
               setImage(photo);
               setShowImage(!showImage);
-              router.push(`/ImagePreview?imageSrc=${encodeURIComponent(photo)}`);
+              router.push(
+                `/ImagePreview?imageSrc=${encodeURIComponent(photo)}`
+              );
             }
           }}
         />
