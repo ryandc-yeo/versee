@@ -31,6 +31,7 @@ yarn-error.log*
 .env*.local
 /server/.env
 .env
+/server/google-api.json
 
 # vercel
 .vercel

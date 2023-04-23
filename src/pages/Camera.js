@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import styled from 'styled-components';
-import {Camera} from "react-camera-pro";
+import styled from "styled-components";
+import { Camera } from "react-camera-pro";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -64,7 +65,7 @@ const Button = styled.button`
 `;
 
 const TakePhotoButton = styled(Button)`
-  background: url('https://img.icons8.com/ios/50/000000/compact-camera.png');
+  background: url("https://img.icons8.com/ios/50/000000/compact-camera.png");
   background-position: center;
   background-size: 50px;
   background-repeat: no-repeat;
@@ -81,7 +82,7 @@ const TakePhotoButton = styled(Button)`
 const ImagePreview = styled.div`
   width: 120px;
   height: 120px;
-  ${({ image }) => (image ? `background-image:  url(${image});` : '')}
+  ${({ image }) => (image ? `background-image:  url(${image});` : "")}
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -98,74 +99,84 @@ const FullScreenImagePreview = styled.div`
   z-index: 100;
   position: absolute;
   background-color: black;
-  ${({ image }) => (image ? `background-image:  url(${image});` : '')}
+  ${({ image }) => (image ? `background-image:  url(${image});` : "")}
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 `;
 
 const CameraPage = () => {
-    const [numberOfCameras, setNumberOfCameras] = useState(0);
-    const [image, setImage] = useState(null);
-    const [showImage, setShowImage] = useState(false);
-    const camera = useRef(null);
-    const [devices, setDevices] = useState([]);
-    const [activeDeviceId, setActiveDeviceId] = useState(undefined);
-  
-    useEffect(() => {
-      const getDevices = async () => {
-        const devices = await navigator.mediaDevices.enumerateDevices();
-        const videoDevices = devices.filter((i) => i.kind == 'videoinput');
-        setDevices(videoDevices);
-      };
-      getDevices();
-    }, []);
-  
-    return (
-      <Wrapper>
-        {showImage ? (
-          <FullScreenImagePreview
-            image={image}
-            onClick={() => {
+  const [numberOfCameras, setNumberOfCameras] = useState(0);
+  const [image, setImage] = useState(null);
+  const [showImage, setShowImage] = useState(false);
+  const camera = useRef(null);
+  const [devices, setDevices] = useState([]);
+  const [activeDeviceId, setActiveDeviceId] = useState(undefined);
+  const router = useRouter();
+
+  useEffect(() => {
+    const getDevices = async () => {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const videoDevices = devices.filter((i) => i.kind == "videoinput");
+      setDevices(videoDevices);
+    };
+    getDevices();
+  }, []);
+
+  return (
+    <Wrapper>
+      {showImage ? (
+        <FullScreenImagePreview
+          image={image}
+          onClick={() => {
+            setShowImage(!showImage);
+          }}
+        />
+      ) : (
+        <Camera
+          ref={camera}
+          aspectRatio="cover"
+          numberOfCamerasCallback={(i) => setNumberOfCameras(i)}
+          videoSourceDeviceId={activeDeviceId}
+          errorMessages={{
+            noCameraAccessible:
+              "No camera device accessible. Please connect your camera or try a different browser.",
+            permissionDenied:
+              "Permission denied. Please refresh and give camera permission.",
+            switchCamera:
+              "It is not possible to switch camera to different one because there is only one video device accessible.",
+            canvas: "Canvas is not supported.",
+          }}
+        />
+      )}
+      <Control>
+        <select
+          onChange={(event) => {
+            setActiveDeviceId(event.target.value);
+          }}
+        >
+          {devices.map((d) => (
+            <option key={d.deviceId} value={d.deviceId}>
+              {d.label}
+            </option>
+          ))}
+        </select>
+        <TakePhotoButton
+          onClick={() => {
+            if (camera.current) {
+              const photo = camera.current.takePhoto();
+              console.log(photo);
+              setImage(photo);
               setShowImage(!showImage);
-            }}
-          />
-        ) : (
-          <Camera
-            ref={camera}
-            aspectRatio="cover"
-            numberOfCamerasCallback={(i) => setNumberOfCameras(i)}
-            videoSourceDeviceId={activeDeviceId}
-            errorMessages={{
-              noCameraAccessible: 'No camera device accessible. Please connect your camera or try a different browser.',
-              permissionDenied: 'Permission denied. Please refresh and give camera permission.',
-              switchCamera:
-                'It is not possible to switch camera to different one because there is only one video device accessible.',
-              canvas: 'Canvas is not supported.',
-            }}
-            width="100%"
-            height="auto"
-          />
-        )}
-        <Control>
-          <ImagePreview
-            image={image}
-            onClick={() => {
-              setShowImage(!showImage);
-            }}
-          />
-          <TakePhotoButton
-            onClick={() => {
-              if (camera.current) {
-                const photo = camera.current.takePhoto();
-                console.log(photo);
-                setImage(photo);
-              }
-            }}
-          />
-        </Control>
-      </Wrapper>
-    );
-  };
+              router.push(
+                `/ImagePreview?imageSrc=${encodeURIComponent(photo)}`
+              );
+            }
+          }}
+        />
+      </Control>
+    </Wrapper>
+  );
+};
 
 export default CameraPage;

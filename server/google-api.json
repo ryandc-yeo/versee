@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "clear-hulling-384600",
+    "private_key_id": "df126b04cc4a9d6d8fc0a215a525b672ae161a7a",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC5N+ZRHxSdIX4A\nD9KarorzUMv9hHmBI1I1j+EosumS/Bs1dpJH4zGvxhcDlGq+slUs8K4/6KflOx7F\nIb0gME4T0d4etHIdw4YZuPZRbTPJ3PNm87Ivxdq/OQxWh4F7kbmEV6Hq6M3FgaVH\n8I/XzIchGtsfd5wrSX7K00mRdFeO6QtV993hUc0vh32764qgYzesvLiCjudqItAH\nivTRV2IH9mDkxT6JEsiIqBWyJrFsP3ogMUriVLVXy9S/C1jAm94pzA9IqdFALTco\nqAqlKsVwKJGW7O2SH4K01YtsbEIoVr8+2s09kytDW42KTnPLyhm948N3BeW5zKAh\n6bSCUCZpAgMBAAECggEAAOadc2gOCtyalwf8q31tVhUexN8j0yW3lOScAP1rxuf8\nfuRSflCD0ZnKS11prn9CDEuoYU2xoVsKAYXyPEmX259R7/7LLktg59efNRKtpY3y\nTh4hz/srnvH5ViNnFRGGoDbn5fNXat5ATksEfBV108qkZbEIfKppGDXyXed9tId6\nAXxlwSd71gDyCIR6QA9TDQt1HBUjWUiNbNwE6UsjjsH0Nz2dvm9FwRd3+C7pLPkz\n+opnCcPk3tVHu/j/0VmpU1NsRNN0Hjmv67goPbSR97gSXdTeZfPyLehNAZ2/J+GK\nAizN4Ok394mzj5s8HnOTVjb89E2HU7lM4EnyyPc8IQKBgQD0hRF1JMU/NT0OaGjN\n/3Rvx0hONtCLjODvRK3ir2QNS9rNLzpZEH5RrpPL1RFiAfxMZxhfyLdYVL/om1U/\nWkqZjyM+Eoj0ahSxk0vjpvlYN2pJbRQgqESXG6xRLZHaWAEw7dpPPd2MBxo3g8v3\ng5eQLxkg4Qh5/Df68GD0xY93kQKBgQDB6hNkeoAdJaKMq6V1Ufbsi0u7lNSzeCQx\n8uVJTEaTQwaEF6kGwqf9SSJ+v6oBAFiADLgTuX5VZoO8jSLkUAwOmnW97+BBSRnP\nWKkVopYU2FXOKg86r1npGxWetE8+jOo5nT/loaoTFSr4NnXbGnaSj4jXwsdOOSlY\nn4EPUR3FWQKBgALq65BoRepBKl9Xo5iBqdQDnrtAMDDaF30DZsfDq//0ncHBBIM3\njSpQWPcfrbtrpqUKveG2tWlaaYfPAq9k1msKqDL/aZ7w/Ro5Vbh7r5H750rFAG57\nU4YyEFZPouPmFO2OiQJVDKW1F/z9l5t2eIKB7VzVEpLSDaDy6VVCXjnhAoGAFAXG\ncNaRSfEr4piKoh2PgIc1j63jdJCQNDQfZr0ggG4oSxViV5db3zRhAnNp62aMvNQT\nYb4ChHDsY1izZJ27UPqz86PEJRmWN6mw89Hw60AXRA1luyqF/yLTzapSkGPef4p0\nIZLay9OgtzZwXupRmfqGJ7kt+S6/zS3TFrDKgSkCgYB2Y0fHkUXb5UF0sH2v9fEX\njI2jiyzEw0YdRCGhnCp0jeC3Ma9VJAV+JXsmEYZ/ywMWBhbqkM0G+1zZyPKvmLF+\nt3fRKvFeYQVXt9djs0IBh4/QdV4MM+sIZZMnrYA4v56Vut9vzfKEo/LM+ziB5j0c\nZzfOav7InVgVpZPnheVqXg==\n-----END PRIVATE KEY-----\n",
+    "client_email": "visionapiservice-acct@clear-hulling-384600.iam.gserviceaccount.com",
+    "client_id": "101093014107313294768",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/visionapiservice-acct%40clear-hulling-384600.iam.gserviceaccount.com"
+  }
