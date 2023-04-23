@@ -19,12 +19,35 @@ export default function Preview() {
 
   return (
     <div>
-      <h1>Preview Page</h1>
-      {imageSrc && <img src={imageSrc} />}
-      <button onClick={handleBack}>Back</button>
-      <Link href={`/TranslationPage?detectedLanguage=Korean&originalSentence=삼겹살&translatedSentence=pork belly`}>
-          <button>View Translation</button>
+      <h1 style={{
+        marginLeft: '5%',
+        marginTop: '5%',
+      }}>Preview Page</h1>
+      <div style={{
+        marginLeft: '7%',
+        marginTop: '4%',
+        marginBottom: '4%',
+      }}>
+        {imageSrc && <img src={imageSrc} />}
+      </div>
+      <div style={{
+        display:'flex',
+        justifyContent:'space-between',
+        marginRight:'5%',
+        marginLeft:'5%',
+        marginBottom:'5%',
+      }}>
+        <div onClick={handleBack} style={{
+          background:'#DFFF9B',
+          borderRadius: '10px',
+        }}>Back</div>
+        <Link href={`/TranslationPage?detectedLanguage=Korean&originalSentence=삼겹살&translatedSentence=pork belly`}>
+            <div style={{
+              background:'#DFFF9B',
+              borderRadius: '10px',
+            }}>View Translation</div>
         </Link>
+      </div>
     </div>
   );
 }

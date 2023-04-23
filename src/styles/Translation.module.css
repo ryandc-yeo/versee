@@ -1,44 +1,13 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .languages {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .sentences {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
-  }
-  
-  .header {
-    font-size: 3rem;
-  }
+.title {
+  position: absolute;
+    width: 159px;
+    height: 30px;
+    left: 30px;
+    top: 74px;
+    padding-bottom: 40px;
 
-  .label {
-    margin-bottom: 0.5rem;
-  }
-  
-  .input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    background: #F1F3FF;
-  }
-
-  /* pink rectangle that stretches across the top of the page */
-.pinkRect {
-    position: absolute;
-    width: 100%; /* stretch across the width of the page */
-    height: 20%; /* take up 1/10 of the height of the page */
-    top: 0; /* position at the top of the page */
-    left: 0; /* position at the left of the page */
-    background: #FF7373; /* set background color to pink */
-    z-index: -1; /* set z-index to -1 to push it behind other content */
-  }
-  
-  
+    font-style: normal;
+    font-weight: 450;
+    font-size: 30px;
+    line-height: 100%;
+}
