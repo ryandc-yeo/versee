@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <>
+    <div>
       <Head>
         <title>Versee</title>
         <meta name="description" content="camera scanning travel app" />
@@ -14,6 +14,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main />
-    </>
+    </div>
   );
 }
