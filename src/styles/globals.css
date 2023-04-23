@@ -92,3 +92,12 @@
       color-scheme: dark;
     }
   }
+
+  @font-face {
+    font-family: 'CircularStd';
+    src: url(../fonts/CircularStd-Black.otf) format('truetype');
+  }
+
+  body{
+    font-family: 'CircularStd';
+  }
