@@ -1,6 +1,4 @@
 .main {
-  /* display: flex;
-  align-items: center; */
   background-color: #1F2451;
   height: 100vh;
   margin: 0;
@@ -22,12 +20,8 @@
 }
 
 .camera {
-  /* position: relative;
-  background: #DFFF9B;
-  border-radius: 30px; */
   margin-left: 18%;
   margin-right: 18%;
   margin-bottom: 3rem;
   padding-top: 4rem;
-  /* margin-top: 50% */
 }
