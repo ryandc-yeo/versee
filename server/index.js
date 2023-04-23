@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const GenerateResult = require("./components/test");
+const TextRec = require("./components/vision");
 
 const port = 8000;
 app.use(cors());
@@ -9,6 +10,14 @@ app.use(cors());
 app.post("/generator", async (req, res) => {
   GenerateResult(req.body)
     .then((response) => res.send(response.slice(0, -1)))
+    .catch((error) => {
+      res.status(500).send(error.message);
+    });
+});
+
+app.post("/vision", async (req, res) => {
+  TextRec(req.body)
+    .then((response) => res.send(response))
     .catch((error) => {
       res.status(500).send(error.message);
     });
