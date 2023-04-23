@@ -1,30 +1,42 @@
-const cohere = require("cohere-ai");
 const express = require("express");
-const cors = require("cors");
-const { writeToJson } = require("./utils");
-require("dotenv").config();
-
-// express app declaration after the imports
 const app = express();
-const port = 8000;
-const router = express.Router();
+const cors = require("cors");
+const GenerateResult = require("./components/test");
 
-// middlewares after calling express()
+const port = 8000;
 app.use(cors());
-app.use(express.json());
-cohere.init(process.env.API_KEY);
+
+app.post("/generator", async (req, res) => {
+  GenerateResult(req.body)
+    .then((response) => res.send(response.slice(0, -1)))
+    .catch((error) => {
+      res.status(500).send(error.message);
+    });
+});
+
+// const cohere = require("cohere-ai");
+// cohere.init("JAYwzMA1JUPrBzxirI9Ie569NtE8SzAvQUQJeA1w"); // This is your trial API key
+// app.get("/api", async (req, res) => {
+//   const response = await cohere.generate({
+//     model: "xlarge",
+//     prompt:
+//       "this is a trivia generation tool. It generates questions related to a given topic.\n-\nTopic: History\nQ: Who invented penicillin?\n-\nTopic: Entertainment\nQ: What was the first toy to be advertised on television?\n-\nTopic: Sports\nQ: Which two countries have not missed one of the modern-day Olympics?\n-\nTopic: Geography\nQ: What is the smallest country in the world?\n-\nTopic: ",
+//     max_tokens: 300,
+//     temperature: 0.9,
+//     k: 0,
+//     stop_sequences: ["-"],
+//     return_likelihoods: "NONE",
+//   });
+//   // res.json(response.body);
+//   console.log(`Prediction: ${response.body.generations[0].text}`);
+// });
 
 app.get("/", (req, res) => {
   res.send(
-    "Hello World! I am a language translation/phrase suggesting app using Cohere AI."
+    "Server Running! I am a language translation/phrase suggesting app using Cohere AI."
   );
 });
 
-router.post("/", async (req, res) => {
-  res.send("hi there");
-});
-
-// at the end of the file
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Listening at http://localhost:${port}`);
 });
