@@ -6,7 +6,7 @@ const GenerateResult = async () => {
   const examples = [
     { text: "welcome", label: "conversation" },
     { text: "Good morning", label: "conversation" },
-    { text: "", label: "Spam" },
+    { text: "dasdfs", label: "Spam" },
     { text: "Nice to know you ;)", label: "conversation" },
     { text: "Please help me?", label: "Spam" },
     { text: "Your parcel will be delivered today", label: "Not spam" },
