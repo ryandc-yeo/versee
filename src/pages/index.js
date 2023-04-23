@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import Main from "./Home";
-import CameraPage from "./Camera";
 
 const inter = Inter({ subsets: ["latin"] });
 
