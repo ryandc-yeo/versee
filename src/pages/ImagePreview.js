@@ -72,6 +72,7 @@ export default function Preview() {
               background: "#DFFF9B",
               borderRadius: "10px",
             }}
+            onClick={compVision}
           >
             View Translation
           </div>
