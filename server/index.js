@@ -7,6 +7,9 @@ const TextRec = require("./components/vision");
 const port = 8000;
 app.use(cors());
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.post("/generator", async (req, res) => {
   GenerateResult(req.body)
     .then((response) => res.send(response.slice(0, -1)))

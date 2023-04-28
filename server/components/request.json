@@ -1,0 +1,9 @@
+{
+    "requests": [
+      {
+        "image": {
+          "content": "hello"
+        }
+      }
+    ]
+}
